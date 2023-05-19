@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const planDetails = document.createElement("div");
             planDetails.classList.add("plan_details");
             const form = document.createElement("form");
-            form.action = "http://localhost/workout.php";
+            form.action = "http://se.shenkar.ac.il/students/2022-2023/web1/dev_223/workout.php";
             form.method = "POST";
 
             const nestedDiv = document.createElement("div");
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
             nestedDiv.appendChild(nestedDiv2);
             nestedDiv.appendChild(nestedDiv3);
 
-            exercisesList = ["Barbell Bench Press", "Machine Pull Downs", "Dumbbells Shoulder Press", "Squats", "Hamstring Curls", "Plank"]
+            const exercisesList = ["Barbell Bench Press", "Machine Pull Downs", "Dumbbells Shoulder Press", "Squats", "Hamstring Curls", "Plank"]
             const nestedDiv4 = document.createElement("div");
             nestedDiv4.classList.add("exercises_list_div")
             const exercisesTitle = document.createElement("h2");
@@ -71,11 +71,20 @@ document.addEventListener("DOMContentLoaded", function() {
             submitButton.type = "submit";
             submitButton.textContent = "Begin Workout!";
             submitButton.classList.add("submit_button");
+            submitButton.addEventListener("click", function(event) {
+                event.stopPropagation();
+            });
             nestedDiv5.appendChild(submitButton);
 
             planDetails.appendChild(nestedDiv);
             planDetails.appendChild(nestedDiv4);
             planDetails.appendChild(nestedDiv5);
+
+            const hiddenInput = document.createElement("input");
+            hiddenInput.type = "hidden";
+            hiddenInput.name = "exercises[]";
+            hiddenInput.value = exercisesList;
+            form.appendChild(hiddenInput);
 
             form.appendChild(planDetails);
 

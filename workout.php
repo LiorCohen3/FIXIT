@@ -1,24 +1,12 @@
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Process the form data here
-    // Access the form fields using $_POST superglobal
-
-    // For example, to get the value of a field with name "duration":
-    $duration = $_POST['duration'];
-
-    // Perform any necessary operations with the form data
-
-    // Return a response to the client
-    echo 'Form submitted successfully!';
-    exit;
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="images/logo_title.png" type="image/png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alef">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
     <title>Workout</title>
 </head>
 <body>
@@ -34,5 +22,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </ul>
         </nav>
     </header>
+    <main>
+        <?php
+        if (isset($_POST['exercises'])) {
+            $exercises = $_POST["exercises"];
+            echo "<h1 style='margin-top: 10%;margin-left: 5%;'>Starting Workout With These Exercises:</h1>";
+            echo "<ul style='margin-left: 5%;'>";
+            foreach ($exercises as $exercise) {
+                echo "<li>$exercise</li>";
+            }
+            echo "</ul>";
+        } else {
+            echo "<h1 style='margin-top: 10%;margin-left: 5%;'>No exercises submitted!</h1>";
+        }
+        ?>
+    </main>
 </body>
 </html>
